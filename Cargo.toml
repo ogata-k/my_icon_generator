@@ -1,5 +1,5 @@
 [package]
-name = "raqote_icon_exm"
+name = "icon-gen"
 version = "0.1.0"
 authors = ["ogata-k <ogtkzk712@gmail.com>"]
 edition = "2018"
@@ -8,3 +8,4 @@ edition = "2018"
 
 [dependencies]
 raqote = "0.7.6"
+clap = "2.33.0"
