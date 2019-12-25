@@ -1,21 +1,25 @@
 use raqote::*;
-use std::fs::OpenOptions;
 use std::fs;
 use std::io;
+use std::path::Path;
 
 fn main() -> Result<(), io::Error> {
-    let path: String = String::from("image/icon.png");
-    let mut split_path: Vec<String> = path.split("/").map(|s| s.to_string()).collect();
-    let file: String = split_path.pop().expect("ファイル名の取得に失敗しました。");
+    run("image/icon.png", 3000)
+}
+
+fn run<P: AsRef<std::path::Path>>(path: P, size: u16) -> Result<(), io::Error> {
+    let path: &Path = path.as_ref();
+    let mut split_path: Vec<String> = path.to_string_lossy().split("/").map(|s| s.to_string()).collect();
+    split_path.pop();
     let dir_path: String = split_path.join("/");
     fs::create_dir_all(&dir_path)?;
 
-    Ok(create_icon(3000).write_png(&path)?)
+    Ok(create_icon(size.into()).write_png(&path)?)
 }
 
-fn create_icon(size: i16) -> DrawTarget {
-    let width: i16 = size;
-    let height : i16 = size;
+fn create_icon(size: u16) -> DrawTarget {
+    let width: u16 = size;
+    let height : u16 = size;
     let mut dt = DrawTarget::new(width.into(), height.into());
 
     // back ground
