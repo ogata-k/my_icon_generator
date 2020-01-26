@@ -6,3 +6,6 @@
 
 <p><strong>生成結果</strong></p>
 <img src="./icon.png" width=300>
+
+<p><strong>WebアプリによるSVG変換の結果</strong></p>
+<img src="./icon.svg" width=300>
